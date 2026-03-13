@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { LoginRequestModel } from '../../models/login/login-request.model';
 import { Observable, tap } from 'rxjs';
 import { AuthResponseModel } from '../../models/login/auth-response.model';
+import { baseBbdApiUrl } from '../base-api-url';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { AuthResponseModel } from '../../models/login/auth-response.model';
 export class Auth {
   
   private httpClient = inject(HttpClient);
-  private apiUrl = "http://localhost:8080/api/auth";
+  private apiUrl = baseBbdApiUrl+"/auth";
   public isAuthenticated = signal<boolean>(false);
   
   public login(loginRequestModel : LoginRequestModel) : Observable<AuthResponseModel> {
