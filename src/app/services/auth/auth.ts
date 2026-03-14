@@ -20,6 +20,7 @@ export class Auth {
       tap((response) => {
         this.isAuthenticated.set(true);
         localStorage.setItem('accessToken', response.accessToken);
+        localStorage.setItem('userId', response.userId.toString());
         
         if (response.isUserAdmin) {
           localStorage.setItem('role', "admin");
@@ -34,6 +35,7 @@ export class Auth {
     this.isAuthenticated.set(false);
     localStorage.removeItem('accessToken');
     localStorage.removeItem('role');
+    localStorage.removeItem('userId');
   }
 
 }
