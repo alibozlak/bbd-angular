@@ -21,6 +21,10 @@ export class Auth {
         this.isAuthenticated.set(true);
         localStorage.setItem('accessToken', response.accessToken);
         localStorage.setItem('userId', response.userId.toString());
+
+        for(let activityType of response.activityTypes){
+          localStorage.setItem(activityType.activityType, activityType.id.toString());
+        }
         
         if (response.isUserAdmin) {
           localStorage.setItem('role', "admin");
@@ -33,9 +37,7 @@ export class Auth {
 
   public logout() : void {
     this.isAuthenticated.set(false);
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('role');
-    localStorage.removeItem('userId');
+    localStorage.clear();
   }
 
 }

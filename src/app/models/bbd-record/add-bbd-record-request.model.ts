@@ -3,4 +3,6 @@ export interface AddBbdRecordRequestDto {
     productId : number;
     bestBeforeDate : string;
     quantity : number;
+
+    activityTypeId : number;
 }
