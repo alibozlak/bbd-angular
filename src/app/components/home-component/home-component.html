@@ -1,19 +1,24 @@
-
 @if (isUserAdmin) {
-    <h2>Yönetici Paneli</h2>
+<h2 class="text-align-center">Yönetici Paneli</h2>
 
-    <button type="button" class="adminButtonSpace" routerLink="/add-or-update-product">
-        Ürün Ekle
-    </button>
+<button type="button" class="adminButtonSpace" routerLink="/add-or-update-product">
+    Ürün Ekle
+</button>
 
-    <br> 
-    <hr>
-    <br>
+<br>
+<hr>
+<br>
 }
 
-<button type="button" style="margin: 10pxs;" routerLink="/add-or-update-bbd-record">SKT Ekle</button>
+<div class="action-container">
+    <button type="button" mat-flat-button color="primary" class="massive-mobile-btn" routerLink="/add-or-update-bbd-record">
+        <mat-icon>add_circle_outline</mat-icon>
+        SKT Ekle
+    </button>
+</div>
 
-<h1>Mevlana SKT Listesi</h1>
+
+<h2 class="text-align-center">Mevlana SKT Listesi</h2>
 <!-- 
     1. Kaldırılması Gereken Tarihe göre,
     2. Envanteri en çok etkileyecek ürüne göre
