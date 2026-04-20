@@ -1,5 +1,5 @@
 export interface Store {
-    storeId : number;
+    id : number;
     storeName : string;
     storeCode : string;
 }

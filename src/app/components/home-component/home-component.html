@@ -11,15 +11,57 @@
 }
 
 <div class="action-container">
-    <button type="button" mat-flat-button color="primary" class="massive-mobile-btn" routerLink="/add-or-update-bbd-record">
+    <button type="button" mat-flat-button color="primary" class="massive-mobile-btn"
+        routerLink="/add-or-update-bbd-record">
         <mat-icon>add_circle_outline</mat-icon>
         SKT Ekle
     </button>
 </div>
 
 
-<h2 class="text-align-center">Mevlana SKT Listesi</h2>
-<!-- 
-    1. Kaldırılması Gereken Tarihe göre,
-    2. Envanteri en çok etkileyecek ürüne göre
--->
+<h2 class="text-align-center">{{storeCode}} : {{storeName}} SKT Listesi</h2>
+
+@for (removalDateSection of homeComponentResponseDto; track $index) {
+<div class="date-section">
+    <h3 class="section-header">
+        <mat-icon>calendar_today</mat-icon>
+        {{removalDateSection.removalDate}} Akşamında Kaldırılacaklar
+    </h3>
+
+    @for (bbdRecord of removalDateSection.productElementForRemovalDateSections; track $index) {
+    <mat-card class="product-card clickable-card" matRipple>
+        <mat-card-header>
+            <mat-card-title>{{bbdRecord.productName}}</mat-card-title>
+            <mat-card-subtitle>{{bbdRecord.productCode}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="product-grid">
+                <div class="data-item">
+                    <span class="label">Miktar: </span>
+                    <span class="value highlighting" [class.negative-impact]="bbdRecord.quantity > 0">
+                        {{bbdRecord.quantity}} Adet
+                    </span>
+                </div>
+                <div class="data-item">
+                    <span class="label">SKT Tarihi: </span>
+                    <span class="value">{{bbdRecord.bestBeforeDate}}</span>
+                </div>
+                <div class="data-item">
+                    <span class="label">Envantere Etkisi: </span>
+                    <span class="value" [class.negative-impact]="bbdRecord.affectInventory < 0">
+                        {{bbdRecord.affectInventory}} TL
+                    </span>
+                </div>
+            </div>
+        </mat-card-content>
+
+        <!-- <mat-card-actions align="end">
+            <button mat-button color="primary" routerLink="/edit-bbd-record/{{bbdRecord.bbdRecordId}}">
+                <mat-icon>edit</mat-icon> DÜZENLE
+            </button>
+        </mat-card-actions> -->
+    </mat-card>
+    }
+</div>
+}

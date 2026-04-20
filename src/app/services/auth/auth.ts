@@ -4,6 +4,7 @@ import { LoginRequestModel } from '../../models/login/login-request.model';
 import { Observable, tap } from 'rxjs';
 import { AuthResponseModel } from '../../models/login/auth-response.model';
 import { baseBbdApiUrl } from '../base-api-url';
+import { userActivityType } from '../../utils/project-constant';
 
 @Injectable({
   providedIn: 'root',
