@@ -25,11 +25,20 @@
 <div class="date-section">
     <h3 class="section-header">
         <mat-icon>calendar_today</mat-icon>
-        {{removalDateSection.removalDate}} Akşamında Kaldırılacaklar
+        {{convertLocalDateStringToTurkeyDateString(removalDateSection.removalDate)}} Akşamında Kaldırılacaklar
     </h3>
 
     @for (bbdRecord of removalDateSection.productElementForRemovalDateSections; track $index) {
-    <mat-card class="product-card clickable-card" matRipple>
+    <mat-card class="product-card clickable-card" 
+        matRipple 
+        [routerLink]="['/edit-bbd-record', bbdRecord.bbdRecordId]" 
+        [state]="{ 
+            bbdRecordId: bbdRecord.bbdRecordId, 
+            quantity: bbdRecord.quantity, 
+            productName: bbdRecord.productName, 
+            bestBeforeDateTurkey: convertLocalDateStringToTurkeyDateString(bbdRecord.bestBeforeDate) 
+        }"
+    >
         <mat-card-header>
             <mat-card-title>{{bbdRecord.productName}}</mat-card-title>
             <mat-card-subtitle>{{bbdRecord.productCode}}</mat-card-subtitle>
@@ -45,7 +54,9 @@
                 </div>
                 <div class="data-item">
                     <span class="label">SKT Tarihi: </span>
-                    <span class="value">{{bbdRecord.bestBeforeDate}}</span>
+                    <span class="value">
+                        {{convertLocalDateStringToTurkeyDateString(bbdRecord.bestBeforeDate)}}
+                    </span>
                 </div>
                 <div class="data-item">
                     <span class="label">Envantere Etkisi: </span>

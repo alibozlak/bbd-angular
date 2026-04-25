@@ -6,12 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { StoreService } from '../../services/store/store-service';
 import { HomeComponentService } from '../../services/home-component/home-component-service';
 import { RemovalDateSection } from '../../models/home-component/removal-date-section.model';
-import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 
 @Component({
   selector: 'app-home-component',
   imports: [RouterLink, MatButtonModule, MatIconModule, 
-            MatCardHeader, MatCard, MatCardTitle, MatCardSubtitle, MatCardContent, MatCardActions],
+            MatCardHeader, MatCard, MatCardTitle, MatCardSubtitle, MatCardContent],
   templateUrl: './home-component.html',
   styleUrl: './home-component.css',
 })
@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit {
     this.homeComponentService.getBbdListByUserId(userId).subscribe(response => {
       this.homeComponentResponseDto = response.object;
     });
+  }
+
+  public convertLocalDateStringToTurkeyDateString(localDateString : String) : String {
+    return `${localDateString.substring(8)}-${localDateString.substring(5,7)}-${localDateString.substring(0,4)}`;
   }
 
 

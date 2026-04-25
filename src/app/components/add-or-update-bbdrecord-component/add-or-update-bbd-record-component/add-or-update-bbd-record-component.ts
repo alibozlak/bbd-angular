@@ -6,7 +6,7 @@ import { ProductService } from '../../../services/product/product-service';
 import { ProductIdNameCodeAndPriceResponseDto } from '../../../models/product/product-id-name-code-price.model';
 import { AddBbdRecordRequestDto } from '../../../models/bbd-record/add-bbd-record-request.model';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { userActivityType } from '../../../utils/project-constant';
+import { user, userActivityType } from '../../../utils/project-constant';
 
 @Component({
   selector: 'app-add-or-update-bbd-record-component',
@@ -41,7 +41,7 @@ export class AddOrUpdateBbdRecordComponent {
 
   public onSubmit() {
     const addBbdRecordRequestDto : AddBbdRecordRequestDto = {
-      userId : localStorage.getItem("userId") ? parseInt(localStorage.getItem("userId")!) : 0,
+      userId : user.getUserId(),
       productId : parseInt(this.bbdForm.getRawValue().productId!),
       bestBeforeDate : this.bbdForm.getRawValue().bestBeforeDate!,
       quantity : parseInt(this.bbdForm.getRawValue().quantity!),
