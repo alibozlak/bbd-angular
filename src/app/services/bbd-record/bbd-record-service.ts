@@ -5,6 +5,10 @@ import { AddBbdRecordRequestDto } from '../../models/bbd-record/add-bbd-record-r
 import { Observable } from 'rxjs';
 import { ResponseBody } from '../../models/response-body/response-body.model';
 import { SaleProductRequestDto } from '../../models/bbd-record/sale-product-request.model';
+import { ResponseBodyWithObject } from '../../models/response-body/response-body-with-object.model';
+import { UpdateBbdRecordPageResponseDto } from '../../models/update-bbd-record-page/update-bbd-record-page-response.model';
+import { UpdateBbdRecordRequestDto } from '../../models/bbd-record/update-bbd-record-request.model';
+import { UpdateBbdRecordPageModel } from '../../models/update-bbd-record/update-bbd-record-page-model.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +22,25 @@ export class BbdRecordService {
     return this.httpClient.post<ResponseBody>(`${this.apiUrl}`, addBbdRecordRequestDto);
   }
 
+  public getUpdateBbdRecordPageModel(bbdRecordId : number) : Observable<ResponseBodyWithObject<UpdateBbdRecordPageModel>>{
+    return this.httpClient.post<ResponseBodyWithObject<UpdateBbdRecordPageModel>>(
+      `${this.apiUrl}/get-update-bbd-record-page-model`, bbdRecordId
+    );
+  }//
+
   public saleProduct(saleProductRequestDto : SaleProductRequestDto) : Observable<ResponseBody>{
-    // console.log(saleProductRequestDto);
     return this.httpClient.post<ResponseBody>(`${this.apiUrl}/sale-product`, saleProductRequestDto);
+  }
+
+  public getUpdateBbdRecordPageDto(bbdRecordId : number) : Observable<ResponseBodyWithObject<UpdateBbdRecordPageResponseDto>> {
+
+    return this.httpClient.post<ResponseBodyWithObject<UpdateBbdRecordPageResponseDto>>(
+      `${this.apiUrl}/get-update-bbd-record-page-dto`, bbdRecordId
+    );
+  }
+
+  public updateBbdRecord(updateBbdRecordRequestDto : UpdateBbdRecordRequestDto) : Observable<ResponseBodyWithObject<number>> {
+    return this.httpClient.put<ResponseBodyWithObject<number>>(`${this.apiUrl}`, updateBbdRecordRequestDto);
   }
   
 }

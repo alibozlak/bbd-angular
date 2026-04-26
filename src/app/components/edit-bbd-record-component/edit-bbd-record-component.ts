@@ -6,15 +6,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
-import { user } from '../../utils/project-constant';
+import { user, utilFunctions } from '../../utils/project-constant';
 import { SaleProductRequestDto } from '../../models/bbd-record/sale-product-request.model';
 import { BbdRecordService } from '../../services/bbd-record/bbd-record-service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-edit-bbd-record-component',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatIconModule, MatSelectModule, MatFormField, MatLabel, MatOption,
+  imports: [FormsModule, RouterLink, MatButtonModule, MatIconModule, MatSelectModule, MatFormField, MatLabel, MatOption,
     MatSnackBarModule
   ],
   templateUrl: './edit-bbd-record-component.html',
@@ -30,13 +31,24 @@ export class EditBbdRecordComponent implements OnInit {
   private snackBar = inject(MatSnackBar);
 
   ngOnInit(): void {
-    const state = history.state as UpdateBbdRecordPageModel;
+    const bbdRecordId = history.state.bbdRecordId;
 
-    if (state.bbdRecordId) {
-      this.model = state;
-      for (let i = 0; i < state.quantity; i++) {
-        this.quantityList[i] = i + 1;
-      }
+    if (bbdRecordId) {
+      this.bbdRecordService.getUpdateBbdRecordPageModel(bbdRecordId).subscribe({
+        next: (response) => {
+          this.model = response.object;
+          this.model.bbdRecordId = bbdRecordId;
+
+          for (let i = 0; i < response.object.quantity; i++) {
+            this.quantityList[i] = i + 1;
+          }
+        },
+
+        error: (error) => {
+          console.log(error);
+          this.snackBar.open(`Sayfa yüklenirken bir hata oluştu!!`, "Kapat", { duration: 2000 });
+        }
+      });
     }
   }
 
@@ -55,7 +67,7 @@ export class EditBbdRecordComponent implements OnInit {
       activityTypeId: activityTypeId,
       bbdRecordId: this.model?.bbdRecordId!,
       newQuantity: (this.quantityList.length - quantity),
-      saledQuantity : quantity,
+      saledQuantity: quantity,
       userId: user.getUserId()
     };
 
@@ -74,6 +86,10 @@ export class EditBbdRecordComponent implements OnInit {
         console.log(error);
       }
     });
+  }
+
+  public convertLocalDateStringToTurkeyDateString(localDateString : String) : String {
+    return utilFunctions.convertLocalDateStringToTurkeyDateString(localDateString);
   }
 
 }

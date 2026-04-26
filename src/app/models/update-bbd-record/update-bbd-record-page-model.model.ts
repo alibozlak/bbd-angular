@@ -3,5 +3,5 @@ export interface UpdateBbdRecordPageModel {
     quantity : number;
 
     productName : string;
-    bestBeforeDateTurkey : string;
+    bestBeforeDate : string;
 }

@@ -1,5 +1,10 @@
-<h2 style="text-align: center;">{{model?.productName}}</h2>
-<h4 style="text-align: center; color: gray;">{{model?.bestBeforeDateTurkey}}</h4>
+@if (model) {
+    <h2 style="text-align: center;">{{model.productName}}</h2>
+    <h4 style="text-align: center; color: gray;">
+        {{convertLocalDateStringToTurkeyDateString(model.bestBeforeDate)}}
+    </h4>
+
+} 
 
 @if (quantityList.length > 0){
     <div class="action-row">
@@ -34,3 +39,14 @@
 } @else {
     <h4 style="text-align: center; color: green;">ÜRÜN BİTTİ</h4>
 }
+
+<br><br><br>
+
+<div class="action-row">
+    <button mat-flat-button color="warn" 
+        [routerLink]="['/update-bbd-record', model?.bbdRecordId]"
+        [state]="{bbdRecordId : model?.bbdRecordId}" >
+        Kaydı Düzenle
+    </button>
+</div>
+

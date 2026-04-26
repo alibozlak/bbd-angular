@@ -1,9 +1,10 @@
 <h2 style="text-align: center; margin-bottom: 24px; color: #1f2937; font-size: 1.5rem;">
-    Yeni SKT Kaydı
+    SKT Kaydı Düzenleme
 </h2>
 
+
 <div class="add-or-update-bbd-record-container">
-    <form [formGroup]="bbdForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="bbdForm" (ngSubmit)="onUpdate()">
         <div class="form-group">
             <label for="product">Ürün : </label>
             <select id="product" formControlName="productId">
@@ -34,6 +35,6 @@
             >
         </div>
 
-        <button id="addProductButton" type="submit" [disabled]="bbdForm.invalid">Ekle</button>
+        <button id="addProductButton" type="submit" [disabled]="bbdForm.invalid">Güncelle</button>
     </form>
 </div>

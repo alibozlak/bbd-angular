@@ -7,6 +7,7 @@ import { StoreService } from '../../services/store/store-service';
 import { HomeComponentService } from '../../services/home-component/home-component-service';
 import { RemovalDateSection } from '../../models/home-component/removal-date-section.model';
 import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { utilFunctions } from '../../utils/project-constant';
 
 @Component({
   selector: 'app-home-component',
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   public convertLocalDateStringToTurkeyDateString(localDateString : String) : String {
-    return `${localDateString.substring(8)}-${localDateString.substring(5,7)}-${localDateString.substring(0,4)}`;
+    return utilFunctions.convertLocalDateStringToTurkeyDateString(localDateString);
   }
 
 
