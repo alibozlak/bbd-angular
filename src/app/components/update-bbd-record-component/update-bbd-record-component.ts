@@ -55,7 +55,7 @@ export class UpdateBbdRecordComponent implements OnInit {
       bestBeforeDate: this.bbdForm.getRawValue().bestBeforeDate!,
       quantity: this.bbdForm.getRawValue().quantity!,
 
-      activityTypeId: parseInt(localStorage.getItem(userActivityType.UPDATE)!)
+      activityTypeId: parseInt(localStorage.getItem(userActivityType.UPDATE_BBD_RECORD)!)
     }
 
     this.bbdService.updateBbdRecord(updateBbdRecordRequestDto).subscribe({

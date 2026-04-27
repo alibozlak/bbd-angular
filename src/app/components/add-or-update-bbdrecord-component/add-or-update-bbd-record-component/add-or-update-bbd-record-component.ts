@@ -46,7 +46,7 @@ export class AddOrUpdateBbdRecordComponent {
       bestBeforeDate : this.bbdForm.getRawValue().bestBeforeDate!,
       quantity : parseInt(this.bbdForm.getRawValue().quantity!),
 
-      activityTypeId : parseInt(localStorage.getItem(userActivityType.CRAETE)!)
+      activityTypeId : parseInt(localStorage.getItem(userActivityType.CREATE_BBD_RECORD)!)
     };    
 
     this.bbdService.addBbdRecord(addBbdRecordRequestDto).subscribe({

@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
-import { user, utilFunctions } from '../../utils/project-constant';
+import { user, userActivityType, utilFunctions } from '../../utils/project-constant';
 import { SaleProductRequestDto } from '../../models/bbd-record/sale-product-request.model';
 import { BbdRecordService } from '../../services/bbd-record/bbd-record-service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { DeleteBbdRecordRequestDto } from '../../models/bbd-record/delete-bbd-record-request.model';
 
 @Component({
   selector: 'app-edit-bbd-record-component',
@@ -27,8 +28,10 @@ export class EditBbdRecordComponent implements OnInit {
   public quantityList: number[] = [];
   public selectedGiveQuantity: number = 1;
   public selectedSaleQuantity: number = 1;
+
   private bbdRecordService: BbdRecordService = inject(BbdRecordService);
   private snackBar = inject(MatSnackBar);
+  private router : Router = inject(Router);
 
   ngOnInit(): void {
     const bbdRecordId = history.state.bbdRecordId;
@@ -56,11 +59,9 @@ export class EditBbdRecordComponent implements OnInit {
     let activityTypeId: number;
 
     if (activityType == "GIVE") {
-      activityTypeId = parseInt(localStorage.getItem("REMOVAL_TYPE_GIVE")!);
-    } else if (activityType == "SALE") {
-      activityTypeId = parseInt(localStorage.getItem("REMOVAL_TYPE_SALE")!);
+      activityTypeId = parseInt(localStorage.getItem(userActivityType.REMOVAL_TYPE_GIVE)!);
     } else {
-      activityTypeId = parseInt(localStorage.getItem("UPDATE")!);
+      activityTypeId = parseInt(localStorage.getItem(userActivityType.REMOVAL_TYPE_SALE)!);
     }
 
     const saleProductRequestDto: SaleProductRequestDto = {
@@ -90,6 +91,30 @@ export class EditBbdRecordComponent implements OnInit {
 
   public convertLocalDateStringToTurkeyDateString(localDateString : String) : String {
     return utilFunctions.convertLocalDateStringToTurkeyDateString(localDateString);
+  }
+
+  public onDelete(){
+    
+    const deleteBbdRecordRequestDto : DeleteBbdRecordRequestDto = {
+      bbdRecordId : this.model?.bbdRecordId!,
+      userId : user.getUserId(),
+      quantity : this.model?.quantity!,
+      activityTypeId : parseInt(localStorage.getItem(userActivityType.DELETE_BBD_RECORD)!)
+    }
+
+    this.bbdRecordService.deleteBbdRecord(deleteBbdRecordRequestDto).subscribe({
+      next : (response) => {
+        if (response.success) {
+          this.router.navigate(['/home'], { replaceUrl: true });
+          this.snackBar.open(`SKT kaydı silindi!`, "Kapat", { duration: 2000 });
+        }
+      },
+
+      error : (error) => {
+        this.snackBar.open(`Silme işlemi yapılamadı :(`, "Kapat", { duration: 2000 });
+        console.log(error);
+      }
+    });
   }
 
 }

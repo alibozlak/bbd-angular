@@ -9,6 +9,7 @@ import { ResponseBodyWithObject } from '../../models/response-body/response-body
 import { UpdateBbdRecordPageResponseDto } from '../../models/update-bbd-record-page/update-bbd-record-page-response.model';
 import { UpdateBbdRecordRequestDto } from '../../models/bbd-record/update-bbd-record-request.model';
 import { UpdateBbdRecordPageModel } from '../../models/update-bbd-record/update-bbd-record-page-model.model';
+import { DeleteBbdRecordRequestDto } from '../../models/bbd-record/delete-bbd-record-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,10 @@ export class BbdRecordService {
 
   public updateBbdRecord(updateBbdRecordRequestDto : UpdateBbdRecordRequestDto) : Observable<ResponseBodyWithObject<number>> {
     return this.httpClient.put<ResponseBodyWithObject<number>>(`${this.apiUrl}`, updateBbdRecordRequestDto);
+  }
+
+  public deleteBbdRecord(deleteBbdRecordRequestDto : DeleteBbdRecordRequestDto) : Observable<ResponseBody> {
+    return this.httpClient.delete<ResponseBody>(`${this.apiUrl}`, {body : deleteBbdRecordRequestDto});
   }
   
 }

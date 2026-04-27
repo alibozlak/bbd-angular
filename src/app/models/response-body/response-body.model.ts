@@ -1,3 +1,3 @@
 export interface ResponseBody {
-    isSuccess : boolean;
+    success : boolean;
 }
