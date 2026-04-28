@@ -16,4 +16,8 @@ export class StoreService {
   public getStoreByStoreId(storeId : number) : Observable<ResponseBodyWithObject<Store>> {
     return this.httpClient.post<ResponseBodyWithObject<Store>>(this.storeApiUrl + "/get-store-by-store-id", storeId);
   }
+
+  public getStoreList() : Observable<ResponseBodyWithObject<Store[]>> {
+    return this.httpClient.get<ResponseBodyWithObject<Store[]>>(`${this.storeApiUrl}/get-all`);
+  }
 }

@@ -23,7 +23,7 @@ export class AddOrUpdateBbdRecordComponent {
   private formBuilder = inject(FormBuilder);
   private bbdService = inject(BbdRecordService);
   private productService = inject(ProductService);
-  private snackBar = inject(MatSnackBar)
+  private snackBar = inject(MatSnackBar);
 
   public products : ProductIdNameCodeAndPriceResponseDto[] | undefined;
 
