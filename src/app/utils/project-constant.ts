@@ -4,16 +4,20 @@ export const userActivityType = {
     REMOVAL_TYPE_GIVE : "REMOVAL_TYPE_GIVE",
     REMOVAL_TYPE_SALE : "REMOVAL_TYPE_SALE",
     DELETE_BBD_RECORD : "DELETE_BBD_RECORD",
+
+    CHECK_BBD_PAST_PRODUCT_DONT_EXIST : "CHECK_BBD_PAST_PRODUCT_DONT_EXIST",
+    CHECK_BBD_PAST_PRODUCT_REMOVED : "CHECK_BBD_PAST_PRODUCT_REMOVED",
 };
 
 export const user = {
     getUserId : () => {
         return localStorage.getItem("userId") ? parseInt(localStorage.getItem("userId")!) : 0
-    }    
+    },
 }
 
 export const utilFunctions = {
     convertLocalDateStringToTurkeyDateString : (localDateString : String) => 
-        `${localDateString.substring(8)}-${localDateString.substring(5,7)}-${localDateString.substring(0,4)}`
+        `${localDateString.substring(8)}-${localDateString.substring(5,7)}-${localDateString.substring(0,4)}`,
   
+    
 }

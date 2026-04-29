@@ -10,6 +10,8 @@ import { UpdateBbdRecordPageResponseDto } from '../../models/update-bbd-record-p
 import { UpdateBbdRecordRequestDto } from '../../models/bbd-record/update-bbd-record-request.model';
 import { UpdateBbdRecordPageModel } from '../../models/update-bbd-record/update-bbd-record-page-model.model';
 import { DeleteBbdRecordRequestDto } from '../../models/bbd-record/delete-bbd-record-request.model';
+import { BbdPastComponentReponseDto } from '../../models/bbd-past-component/bbd-past-component-response.model';
+import { BbdPastComponentRequestDto } from '../../models/bbd-past-component/bbd-past-component-resquest.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +47,16 @@ export class BbdRecordService {
   }
 
   public deleteBbdRecord(deleteBbdRecordRequestDto : DeleteBbdRecordRequestDto) : Observable<ResponseBody> {
-    return this.httpClient.delete<ResponseBody>(`${this.apiUrl}`, {body : deleteBbdRecordRequestDto});
+    return this.httpClient.put<ResponseBody>(`${this.apiUrl}/soft-delete`, deleteBbdRecordRequestDto);
+  }
+
+  public getBbdPastRecord(bbdRecordId : number) : Observable<ResponseBodyWithObject<BbdPastComponentReponseDto>> {
+    return this.httpClient
+      .get<ResponseBodyWithObject<BbdPastComponentReponseDto>>(this.apiUrl + "/get-bbd-past-record-dto/" + bbdRecordId);
+  }
+
+  public updateBbdRecordForBbdPast(bbdPastComponentRequestDto : BbdPastComponentRequestDto) : Observable<ResponseBody> {
+    return this.httpClient.put<ResponseBody>(`${this.apiUrl}/update-for-bbd-past`, bbdPastComponentRequestDto);
   }
   
 }

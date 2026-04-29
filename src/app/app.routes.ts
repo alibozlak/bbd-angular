@@ -7,6 +7,7 @@ import { AddOrUpdateBbdRecordComponent } from './components/add-or-update-bbdrec
 import { EditBbdRecordComponent } from './components/edit-bbd-record-component/edit-bbd-record-component';
 import { UpdateBbdRecordComponent } from './components/update-bbd-record-component/update-bbd-record-component';
 import { AddUserComponent } from './components/add-user-component/add-user-component';
+import { BbdPastComponent } from './components/bbd-past-component/bbd-past-component';
 
 export const routes: Routes = [
     {path : 'login', component : Login},
@@ -17,4 +18,5 @@ export const routes: Routes = [
     {path : 'update-bbd-record/:bbdRecordId', component : UpdateBbdRecordComponent, canActivate : [authGuard]},
     {path : 'edit-bbd-record/:bbdRecordId', component : EditBbdRecordComponent, canActivate : [authGuard]},
     {path : 'add-user', component : AddUserComponent, canActivate : [authGuard]},
+    {path : 'bbd-past/:bbdRecordId', component : BbdPastComponent, canActivate : [authGuard]},
 ];

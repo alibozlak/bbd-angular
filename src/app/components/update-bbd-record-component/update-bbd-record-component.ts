@@ -27,7 +27,7 @@ export class UpdateBbdRecordComponent implements OnInit {
   public bbdForm = this.formBuilder.group({
     productId: [null as Number | null, Validators.required],
     bestBeforeDate: [null as string | null, Validators.required],
-    quantity: [null as number | null, [Validators.required, Validators.min(1)]]
+    quantity: [null as number | null, [Validators.required]]
   });
 
   ngOnInit(): void {
