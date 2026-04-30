@@ -1,7 +1,7 @@
 export interface SaleProductRequestDto {
     bbdRecordId : number;
     newQuantity : number;
-    saledQuantity : number;
+    quantity : number;
     userId : number;
 
     activityTypeId : number;

@@ -68,7 +68,7 @@ export class EditBbdRecordComponent implements OnInit {
       activityTypeId: activityTypeId,
       bbdRecordId: this.model?.bbdRecordId!,
       newQuantity: (this.quantityList.length - quantity),
-      saledQuantity: quantity,
+      quantity: quantity,
       userId: user.getUserId()
     };
 
