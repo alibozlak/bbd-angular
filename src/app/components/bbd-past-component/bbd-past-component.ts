@@ -44,7 +44,7 @@ export class BbdPastComponent implements OnInit {
       userId : user.getUserId(),
       activityTypeId : activityTypeId,
       bbdRecordId : this.bbdPastComponentResponseDto?.bbdRecordId!,
-      deletedQuantity : this.bbdPastComponentResponseDto?.quantity!
+      quantity : this.bbdPastComponentResponseDto?.quantity!
     }
 
     this.bbdRecordService.updateBbdRecordForBbdPast(bbdPastComponentRequestDto).subscribe({

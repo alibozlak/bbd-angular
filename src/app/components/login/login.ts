@@ -32,12 +32,12 @@ export class Login {
 
       this.authService.login(loginRequsetModel).subscribe({
         next: (response) => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/'], { replaceUrl : true });
         },
         error: (error) => {
           console.error(error);
           localStorage.clear();
-          alert("Kullanıcı adı veya şifre hatalı!");
+          alert("Kullanıcı kodu veya şifre hatalı!");
         }
       });
     }

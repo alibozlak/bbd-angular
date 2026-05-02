@@ -3,5 +3,5 @@ export interface BbdPastComponentRequestDto {
     activityTypeId : number;
 
     bbdRecordId : number;
-    deletedQuantity : number;
+    quantity : number;
 }

@@ -5,4 +5,5 @@ export interface AddUserRequestDto {
     storeId : number;
     isAdmin : boolean;
     isActive : boolean;
+    isBbdTracker : boolean;
 }

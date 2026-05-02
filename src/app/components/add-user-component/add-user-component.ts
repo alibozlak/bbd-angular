@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
 
   public userForm = this.formBuilder.group({
     storeId : [null, Validators.required],
-    username : [null, Validators.required],
+    username : [null, [Validators.required]],
     password : [null, [Validators.required]]
   });
 
@@ -48,15 +48,15 @@ export class AddUserComponent implements OnInit {
   public save(){
     const addUserRequestDto : AddUserRequestDto = {
       storeId : this.userForm.getRawValue().storeId!,
-      userName : this.userForm.getRawValue().username!,
+      userName : `${this.userForm.getRawValue().username!}`,
       password : this.userForm.getRawValue().password!,
       isAdmin : false,
-      isActive : true 
+      isActive : true,
+      isBbdTracker : false,
     };
 
     this.userService.addUser(addUserRequestDto).subscribe({
       next : (response) => {
-        console.log(response);
         alert("Kullanıcı Kaydedildi! :)");
         this.userForm.reset();
       },

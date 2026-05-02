@@ -8,9 +8,12 @@ import { EditBbdRecordComponent } from './components/edit-bbd-record-component/e
 import { UpdateBbdRecordComponent } from './components/update-bbd-record-component/update-bbd-record-component';
 import { AddUserComponent } from './components/add-user-component/add-user-component';
 import { BbdPastComponent } from './components/bbd-past-component/bbd-past-component';
+import { loginGuard } from './guards/login.guard';
+import { ChangeUserPasswordComponent } from './components/change-user-password-component/change-user-password-component';
+import { AddUserComponentForBbdTracker } from './components/add-user-component-for-bbd-tracker/add-user-component-for-bbd-tracker';
 
 export const routes: Routes = [
-    {path : 'login', component : Login},
+    {path : 'login', component : Login, canActivate : [loginGuard]},
     {path : "home", component : HomeComponent, canActivate : [authGuard]},
     {path : '', redirectTo : 'home', pathMatch : 'full'},
     {path : 'add-or-update-product', component : AddOrUpdateProductComponent, canActivate : [authGuard]},
@@ -19,4 +22,6 @@ export const routes: Routes = [
     {path : 'edit-bbd-record/:bbdRecordId', component : EditBbdRecordComponent, canActivate : [authGuard]},
     {path : 'add-user', component : AddUserComponent, canActivate : [authGuard]},
     {path : 'bbd-past/:bbdRecordId', component : BbdPastComponent, canActivate : [authGuard]},
+    {path : 'change-password', component : ChangeUserPasswordComponent, canActivate : [authGuard]},
+    {path : 'add-user-for-bbd-tracker', component : AddUserComponentForBbdTracker, canActivate : [authGuard]},
 ];
