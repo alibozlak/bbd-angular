@@ -15,6 +15,12 @@ export const user = {
     },
 }
 
+export const store = {
+    getStoreId : () => {
+        return localStorage.getItem("storeId") ? parseInt(localStorage.getItem("storeId")!) : 0
+    },
+}
+
 export const utilFunctions = {
     convertLocalDateStringToTurkeyDateString : (localDateString : String) => 
         `${localDateString.substring(8)}-${localDateString.substring(5,7)}-${localDateString.substring(0,4)}`,

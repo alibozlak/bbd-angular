@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public goAddUserForBbdTrackerPage(){
-    this.router.navigate(['/add-user-for-bbd-tracker']);
+    this.router.navigate(['/add-user-for-bbd-tracker'], { state : { storeId : parseInt(localStorage.getItem("storeId")!) } });
   }
 
 

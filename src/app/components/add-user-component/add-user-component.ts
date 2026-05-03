@@ -62,7 +62,6 @@ export class AddUserComponent implements OnInit {
       },
 
       error : (error) => {
-        console.log(error);
         this.snackBar.open("Kullanıcı Kaydı Yapılamadı :(","Kapat", {duration : 3000});
       }
     });

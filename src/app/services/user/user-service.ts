@@ -6,6 +6,8 @@ import { ResponseBodyWithObject } from '../../models/response-body/response-body
 import { AddUserRequestDto } from '../../models/user/add-user-request.model';
 import { ResponseBody } from '../../models/response-body/response-body.model';
 import { ChangePasswordRequestDto } from '../../models/user/change-password-request.model';
+import { UserIdAndCodeForAddUserByTrackerResponseDto } from '../../models/user/user-id-and-code-response.model';
+import { AddStoreToUserRequestDto } from '../../models/user/add-store-to-user-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +31,13 @@ export class UserService {
 
   public getIsUserABbdTracker(userId : number) : Observable<ResponseBody> {
     return this.httpClient.get<ResponseBody>(`${this.userApiUrl}/is-user-a-bbd-tracker/${userId}`)
+  }
+
+  public getUserIdAndCodeResponseDtoList() : Observable<UserIdAndCodeForAddUserByTrackerResponseDto[]> {
+    return this.httpClient.get<UserIdAndCodeForAddUserByTrackerResponseDto[]>(`${this.userApiUrl}/get-user-id-and-code-list`);
+  }
+
+  public addStoreToUserByBbdTracker(addStoreToUserRequestDto : AddStoreToUserRequestDto) : Observable<ResponseBody> {
+    return this.httpClient.put<ResponseBody>(`${this.userApiUrl}/add-store-to-user-by-bbd-tracker`, addStoreToUserRequestDto);
   }
 }
