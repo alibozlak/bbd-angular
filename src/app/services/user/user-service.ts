@@ -8,6 +8,7 @@ import { ResponseBody } from '../../models/response-body/response-body.model';
 import { ChangePasswordRequestDto } from '../../models/user/change-password-request.model';
 import { UserIdAndCodeForAddUserByTrackerResponseDto } from '../../models/user/user-id-and-code-response.model';
 import { AddStoreToUserRequestDto } from '../../models/user/add-store-to-user-request.model';
+import { RequestDtoForListCoworkers } from '../../models/user/request-dto-for-list-coworkers.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,4 +41,19 @@ export class UserService {
   public addStoreToUserByBbdTracker(addStoreToUserRequestDto : AddStoreToUserRequestDto) : Observable<ResponseBody> {
     return this.httpClient.put<ResponseBody>(`${this.userApiUrl}/add-store-to-user-by-bbd-tracker`, addStoreToUserRequestDto);
   }
+
+  public getUserIdAndCodeResponseDtoListWithoutHimself(requestDtoForListCoworkers : RequestDtoForListCoworkers) 
+    : Observable<UserIdAndCodeForAddUserByTrackerResponseDto[]> 
+    {
+    return this.httpClient.post<UserIdAndCodeForAddUserByTrackerResponseDto[]>(
+      `${this.userApiUrl}/get-user-id-and-code-list-without-himself`, requestDtoForListCoworkers
+    );
+  }
+
+  public removeUserFromStoreByBbdTracker(addStoreToUserRequestDto : AddStoreToUserRequestDto) : Observable<ResponseBody> {
+    return this.httpClient.put<ResponseBody>(
+      `${this.userApiUrl}/remove-user-from-store-by-bbd-tracker`, addStoreToUserRequestDto
+    );
+  }
+
 }

@@ -48,5 +48,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/add-user-for-bbd-tracker'], { state : { storeId : parseInt(localStorage.getItem("storeId")!) } });
   }
 
+  public goUserListForBbdTracker(){
+    this.router.navigate(
+      ['/remove-user-from-store-by-bbd-tracker'], 
+      { state : { storeId : parseInt(localStorage.getItem("storeId")!) } }
+    );
+  }
+
 
 }

@@ -11,6 +11,7 @@ import { BbdPastComponent } from './components/bbd-past-component/bbd-past-compo
 import { loginGuard } from './guards/login.guard';
 import { ChangeUserPasswordComponent } from './components/change-user-password-component/change-user-password-component';
 import { AddUserComponentForBbdTracker } from './components/add-user-component-for-bbd-tracker/add-user-component-for-bbd-tracker';
+import { RemoveUserFromStoreByBbdTrackerComponent } from './components/remove-user-from-store-by-bbd-tracker-component/remove-user-from-store-by-bbd-tracker-component';
 
 export const routes: Routes = [
     {path : 'login', component : Login, canActivate : [loginGuard]},
@@ -24,4 +25,5 @@ export const routes: Routes = [
     {path : 'bbd-past/:bbdRecordId', component : BbdPastComponent, canActivate : [authGuard]},
     {path : 'change-password', component : ChangeUserPasswordComponent, canActivate : [authGuard]},
     {path : 'add-user-for-bbd-tracker', component : AddUserComponentForBbdTracker, canActivate : [authGuard]},
+    {path : 'remove-user-from-store-by-bbd-tracker', component : RemoveUserFromStoreByBbdTrackerComponent, canActivate : [authGuard]},
 ];
