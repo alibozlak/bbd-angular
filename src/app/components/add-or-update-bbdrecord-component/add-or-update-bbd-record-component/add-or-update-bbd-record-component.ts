@@ -26,11 +26,28 @@ export class AddOrUpdateBbdRecordComponent {
   private snackBar = inject(MatSnackBar);
 
   public products : ProductIdNameCodeAndPriceResponseDto[] | undefined;
+  public today : string | undefined;
 
   public constructor() {
     this.productService.getAllProductIdNameCodeAndPriceDtos().subscribe(response => {
       this.products = response.object;
     });
+
+    const date : Date = new Date();
+    let _today = `${date.getFullYear()}-`;
+    const month = date.getMonth() + 1;
+    if (month < 10) {
+      _today += `0${month}-`;
+    } else {
+      _today += `${month}-`;
+    }
+
+    if (date.getDate() < 10) {
+      _today += `0${date.getDate()}`;
+    } else {
+      _today += `${date.getDate()}`;
+    }
+    this.today = _today;
   }
 
   public bbdForm = this.formBuilder.group({
