@@ -3,10 +3,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product/product-service';
 import { CommonModule } from '@angular/common';
 import { AddOrUpdateProductRequestDto } from '../../../models/product/add-or-update-product-request.model';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-or-update-product-component',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatSnackBarModule],
   templateUrl: './add-or-update-product-component.html',
   styleUrl: './add-or-update-product-component.css',
 })
