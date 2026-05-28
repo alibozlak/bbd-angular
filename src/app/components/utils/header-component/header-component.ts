@@ -55,5 +55,9 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+  public goAddProductPage(){
+    this.router.navigate(['/add-or-update-product']);
+  }
+
 
 }

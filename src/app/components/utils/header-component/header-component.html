@@ -13,7 +13,14 @@
     <!-- Hidden Dropdown Menu (Invisible until clicked) -->
     <mat-menu #userMenu="matMenu" xPosition="before">
 
-        @if (isUserABbdTracker) {                  
+        @if (isUserABbdTracker) {               
+            <button mat-menu-item (click)="goAddProductPage()">
+                <mat-icon color="warn">add_box</mat-icon>
+                <span>Ürün Ekle</span>
+            </button>
+
+            <mat-divider></mat-divider>
+
             <button mat-menu-item (click)="goAddUserForBbdTrackerPage()">
                 <mat-icon color="warn">person_add</mat-icon>
                 <span>Personel Ekle</span>

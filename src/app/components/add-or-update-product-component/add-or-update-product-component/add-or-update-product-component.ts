@@ -4,6 +4,7 @@ import { ProductService } from '../../../services/product/product-service';
 import { CommonModule } from '@angular/common';
 import { AddOrUpdateProductRequestDto } from '../../../models/product/add-or-update-product-request.model';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { user, userActivityType } from '../../../utils/project-constant';
 
 @Component({
   selector: 'app-add-or-update-product-component',
@@ -35,7 +36,10 @@ export class AddOrUpdateProductComponent {
         productCode : this.addOrUpdateProductForm.getRawValue().productCode!,
         bestBefore : this.addOrUpdateProductForm.getRawValue().bestBefore!,
         price : this.addOrUpdateProductForm.getRawValue().price!,
-        tax : this.addOrUpdateProductForm.getRawValue().tax!
+        tax : this.addOrUpdateProductForm.getRawValue().tax!,
+
+        activityTypeId : parseInt(userActivityType.ADD_PRODUCT_BY_BBD_TRACKER!),
+        userId : user.getUserId()
       }
 
       this.productService.addProduct(addOrUpdateRequestDto).subscribe({

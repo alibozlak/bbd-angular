@@ -4,4 +4,7 @@ export interface AddOrUpdateProductRequestDto {
     bestBefore : number;
     price : number;
     tax : number;
+
+    userId : number;
+    activityTypeId : number;
 }
