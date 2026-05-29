@@ -6,5 +6,6 @@ export interface AddOrUpdateProductRequestDto {
     tax : number;
 
     userId : number;
+    bbdTrackerId : number;
     activityTypeId : number;
 }

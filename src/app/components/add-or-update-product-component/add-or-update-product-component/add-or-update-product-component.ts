@@ -39,7 +39,8 @@ export class AddOrUpdateProductComponent {
         tax : this.addOrUpdateProductForm.getRawValue().tax!,
 
         activityTypeId : parseInt(userActivityType.ADD_PRODUCT_BY_BBD_TRACKER!),
-        userId : user.getUserId()
+        userId : user.getUserId(),
+        bbdTrackerId : parseInt(localStorage.getItem("bbdTrackerId")!)
       }
 
       this.productService.addProduct(addOrUpdateRequestDto).subscribe({

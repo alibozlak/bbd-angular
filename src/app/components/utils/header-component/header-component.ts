@@ -25,7 +25,10 @@ export class HeaderComponent implements OnInit {
     const userId = user.getUserId();
     this.userService.getIsUserABbdTracker(userId).subscribe({
       next : (response) => {
-        this.isUserABbdTracker = response.success;
+        this.isUserABbdTracker = response.object.isUserABbdTracker;
+        if (this.isUserABbdTracker)
+          localStorage.setItem("bbdTrackerId", response.object.bbdTrackerId.toString());
+        
       },
 
       error : (error) => {
