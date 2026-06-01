@@ -4,6 +4,8 @@ import { baseBbdApiUrl } from '../base-api-url';
 import { Observable } from 'rxjs';
 import { ResponseBodyWithObject } from '../../models/response-body/response-body-with-object.model';
 import { Store } from '../../models/store/store.model';
+import { CreateStoreRequestDto } from '../../models/store/create-store-request-dto.model';
+import { ResponseBody } from '../../models/response-body/response-body.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +21,9 @@ export class StoreService {
 
   public getStoreList() : Observable<ResponseBodyWithObject<Store[]>> {
     return this.httpClient.get<ResponseBodyWithObject<Store[]>>(`${this.storeApiUrl}/get-all`);
+  }
+
+  public createStore(createStoreRequestDto : CreateStoreRequestDto) : Observable<ResponseBody> {
+    return this.httpClient.post<ResponseBody>(this.storeApiUrl.toString(), createStoreRequestDto);
   }
 }
