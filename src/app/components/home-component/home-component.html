@@ -4,10 +4,19 @@
 <h2 class="text-align-center">Yönetici Paneli</h2>
 
 <div class="action-container">
-    <button type="button" mat-flat-button color="primary" class="massive-mobile-btn" routerLink="/add-user">
-        <mat-icon>add_circle_outline</mat-icon>
-        Kullanıcı Ekle
-    </button>
+    <div class="action-container">
+        <button type="button" mat-flat-button color="primary" class="massive-mobile-btn" routerLink="/add-user">
+            <mat-icon>add_circle_outline</mat-icon>
+            Kullanıcı Ekle
+        </button>
+    </div>
+
+    <div class="action-container">
+        <button type="button" mat-flat-button color="primary" class="massive-mobile-btn" routerLink="/add-store">
+            <mat-icon>store</mat-icon>
+            Mağaza Ekle
+        </button>
+    </div>
 </div>
 
 } @else if (!doesUserHaveStore && userId > 0){
