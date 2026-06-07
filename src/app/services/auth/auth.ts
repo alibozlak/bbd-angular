@@ -4,6 +4,7 @@ import { LoginRequestModel } from '../../models/login/login-request.model';
 import { Observable, tap } from 'rxjs';
 import { AuthResponseModel } from '../../models/login/auth-response.model';
 import { baseBbdApiUrl } from '../base-api-url';
+import { ResponseBodyWithObject } from '../../models/response-body/response-body-with-object.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,19 +15,19 @@ export class Auth {
   private apiUrl = baseBbdApiUrl+"/auth";
   public isAuthenticated = signal<boolean>(false);
   
-  public login(loginRequestModel : LoginRequestModel) : Observable<AuthResponseModel> {
-    return this.httpClient.post<AuthResponseModel>(`${this.apiUrl}/login`, loginRequestModel)
+  public login(loginRequestModel : LoginRequestModel) : Observable<ResponseBodyWithObject<AuthResponseModel>> {
+    return this.httpClient.post<ResponseBodyWithObject<AuthResponseModel>>(`${this.apiUrl}/login`, loginRequestModel)
     .pipe(
       tap((response) => {
         this.isAuthenticated.set(true);
-        localStorage.setItem('accessToken', response.accessToken);
-        localStorage.setItem('userId', response.userId.toString());
+        localStorage.setItem('accessToken', response.object.accessToken);
+        localStorage.setItem('userId', response.object.userId.toString());
 
-        for(let activityType of response.activityTypes){
+        for(let activityType of response.object.activityTypes){
           localStorage.setItem(activityType.activityType, activityType.id.toString());
         }
         
-        if (response.isUserAdmin) {
+        if (response.object.isUserAdmin) {
           localStorage.setItem('role', "admin");
         } else {
           localStorage.setItem('role', "user");
