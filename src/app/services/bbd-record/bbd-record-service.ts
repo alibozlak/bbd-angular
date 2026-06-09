@@ -26,9 +26,8 @@ export class BbdRecordService {
   }
 
   public getUpdateBbdRecordPageModel(bbdRecordId : number) : Observable<ResponseBodyWithObject<UpdateBbdRecordPageModel>>{
-    return this.httpClient.post<ResponseBodyWithObject<UpdateBbdRecordPageModel>>(
-      `${this.apiUrl}/get-update-bbd-record-page-model`, bbdRecordId
-    );
+    return this.httpClient.get<ResponseBodyWithObject<UpdateBbdRecordPageModel>>(
+      `${this.apiUrl}/get-update-bbd-record-page-model/${bbdRecordId}`);
   }//
 
   public saleProduct(saleProductRequestDto : SaleProductRequestDto) : Observable<ResponseBody>{
@@ -37,9 +36,8 @@ export class BbdRecordService {
 
   public getUpdateBbdRecordPageDto(bbdRecordId : number) : Observable<ResponseBodyWithObject<UpdateBbdRecordPageResponseDto>> {
 
-    return this.httpClient.post<ResponseBodyWithObject<UpdateBbdRecordPageResponseDto>>(
-      `${this.apiUrl}/get-update-bbd-record-page-dto`, bbdRecordId
-    );
+    return this.httpClient.get<ResponseBodyWithObject<UpdateBbdRecordPageResponseDto>>(
+      `${this.apiUrl}/get-update-bbd-record-page-dto/${bbdRecordId}`);
   }
 
   public updateBbdRecord(updateBbdRecordRequestDto : UpdateBbdRecordRequestDto) : Observable<ResponseBodyWithObject<number>> {
