@@ -36,8 +36,9 @@ export class UserService {
       .get<ResponseBodyWithObject<IsBbdTrackerAndBbdTrackerIdResponseDto>>(`${this.userApiUrl}/is-user-a-bbd-tracker/${userId}`);
   }
 
-  public getUserIdAndCodeResponseDtoList() : Observable<UserIdAndCodeForAddUserByTrackerResponseDto[]> {
-    return this.httpClient.get<UserIdAndCodeForAddUserByTrackerResponseDto[]>(`${this.userApiUrl}/get-user-id-and-code-list`);
+  public getUserIdAndCodeResponseDtoList() : Observable<ResponseBodyWithObject<UserIdAndCodeForAddUserByTrackerResponseDto[]>> {
+    return this.httpClient
+    .get<ResponseBodyWithObject<UserIdAndCodeForAddUserByTrackerResponseDto[]>>(`${this.userApiUrl}/get-user-id-and-code-list`);
   }
 
   public addStoreToUserByBbdTracker(addStoreToUserRequestDto : AddStoreToUserRequestDto) : Observable<ResponseBody> {
@@ -45,9 +46,9 @@ export class UserService {
   }
 
   public getUserIdAndCodeResponseDtoListWithoutHimself(requestDtoForListCoworkers : RequestDtoForListCoworkers) 
-    : Observable<UserIdAndCodeForAddUserByTrackerResponseDto[]> 
+    : Observable<ResponseBodyWithObject<UserIdAndCodeForAddUserByTrackerResponseDto[]>> 
     {
-    return this.httpClient.post<UserIdAndCodeForAddUserByTrackerResponseDto[]>(
+    return this.httpClient.post<ResponseBodyWithObject<UserIdAndCodeForAddUserByTrackerResponseDto[]>>(
       `${this.userApiUrl}/get-user-id-and-code-list-without-himself`, requestDtoForListCoworkers
     );
   }

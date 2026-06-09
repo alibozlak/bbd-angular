@@ -27,7 +27,7 @@ export class RemoveUserFromStoreByBbdTrackerComponent implements OnInit {
 
     this.userService.getUserIdAndCodeResponseDtoListWithoutHimself(requestDtoForListCoworkers).subscribe({
       next : (response) => {
-        this.userIdAndCodeResponseDtoList = response;
+        this.userIdAndCodeResponseDtoList = response.object;
       },
 
       error : (e) => {

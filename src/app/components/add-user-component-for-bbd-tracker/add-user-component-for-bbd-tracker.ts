@@ -43,7 +43,7 @@ export class AddUserComponentForBbdTracker implements OnInit {
 
     this.userService.getUserIdAndCodeResponseDtoList().subscribe({
       next : (response) => {
-        this.userIdAndCodeResponseDtoList = response;
+        this.userIdAndCodeResponseDtoList = response.object;
       },
 
       error : (e) => {
