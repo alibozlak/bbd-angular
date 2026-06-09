@@ -20,7 +20,7 @@ export class UserService {
   private userApiUrl : string = baseBbdApiUrl + "/users";
 
   public getStoreIdByUserId(userId : number) : Observable<ResponseBodyWithObject<number>> {
-    return this.httpClient.post<ResponseBodyWithObject<number>>(`${this.userApiUrl}/get-store-id-by-user-id`, userId);
+    return this.httpClient.get<ResponseBodyWithObject<number>>(`${this.userApiUrl}/get-store-id-by-user-id/${userId}`);
   }
 
   public addUser(addUserRequestDto : AddUserRequestDto) : Observable<ResponseBody> {
